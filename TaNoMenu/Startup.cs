@@ -26,6 +26,7 @@ namespace TaNoMenu
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(); // Make sure you call this previous to AddMvc
             services.AddControllers();
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo {Title = "TaNoMenu", Version = "v1"}); });
         }
@@ -39,7 +40,10 @@ namespace TaNoMenu
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "TaNoMenu v1"));
             }
-
+            
+            app.UseCors(
+                options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()
+            );
             app.UseHttpsRedirection();
 
             app.UseRouting();
@@ -47,6 +51,7 @@ namespace TaNoMenu
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+
         }
     }
 }

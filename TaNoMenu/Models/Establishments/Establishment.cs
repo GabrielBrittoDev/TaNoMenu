@@ -13,7 +13,7 @@ namespace TaNoMenu.Models.Establishments
         public string Picture { get; set; }
         public string Category { get; set; }
         public int Number { get; set; }
-        public int Complement { get; set; }
+        public string Complement { get; set; }
         public string Neighborhood { get; set; }
         public string Zip { get; set; }
         public string City { get; set; }
