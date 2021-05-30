@@ -1,6 +1,7 @@
 using System;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using TaNoMenu.Models;
 using TaNoMenu.Models.Establishments;
 using TaNoMenu.Repositories;
 
@@ -19,11 +20,11 @@ namespace TaNoMenu.Controllers
         
         [HttpPost]
         [Route("login")]
-        public ActionResult Authenticate([FromBody]Establishment model)
+        public ActionResult Authenticate([FromBody] Establishment establishment)
         {
             try
             {
-                String token = TokenRepository.GenerateToken(_establishmentRepository.Authenticable(model));
+                String token = TokenRepository.GenerateToken(_establishmentRepository.Authenticable(establishment));
                 return Ok(new {
                     token
                 });

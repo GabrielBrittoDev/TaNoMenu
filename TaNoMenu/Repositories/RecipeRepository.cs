@@ -17,7 +17,7 @@ namespace TaNoMenu.Repositories
         {
             using (IDbConnection dbConnection = new MySqlConnection(ConnectionString))
             {
-                string sQuery = "INSERT INTO Recipes (Name, EstablishmentId, Description, Picture, Price) VALUES(@Name, @EstablishmentId, @Description, @Picture, @Price)";
+                string sQuery = "INSERT INTO Recipes (Name, EstablishmentId, Description, CookTime, Picture, Price) VALUES(@Name, @EstablishmentId, @Description, @CookTime, @Picture, @Price)";
                 dbConnection.Open();
                 dbConnection.Execute(sQuery, item);
             }
@@ -40,7 +40,7 @@ namespace TaNoMenu.Repositories
             {
                 string sQuery = "UPDATE Recipes SET Name = @Name,"
                                 + " Description = @Description, Price= @Price," 
-                                + " Picture= @Picture" 
+                                + " Picture = @Picture, CookTime = @CookTime" 
                             + " WHERE Id = @Id";
                 dbConnection.Open();
                 dbConnection.Query(sQuery, item);

@@ -13,7 +13,7 @@ namespace TaNoMenu.Db.Seed
         {
             _dbConnection = new MySqlConnection(configuration["DatabaseSettings:ConnectionString"]);
             _dbConnection.Open();
-
+ 
             _dbConnection.Execute(@"
                     CREATE TABLE IF NOT EXISTS Establishments (
                         Id  INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -38,6 +38,7 @@ namespace TaNoMenu.Db.Seed
                         Name VARCHAR(255) NULL,
                         EstablishmentId INT UNSIGNED NOT NULL,
                         Description TEXT DEFAULT NULL,
+                        CookTime INT UNSIGNED NOT NULL, 
                         Picture VARCHAR(255) DEFAULT NULL,
                         Price DECIMAL(5,2) NOT NULL,
                         FOREIGN KEY (EstablishmentId) REFERENCES Establishments(Id) ON DELETE CASCADE ON UPDATE CASCADE 
