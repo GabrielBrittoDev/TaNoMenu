@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using TaNoMenu.Models;
@@ -21,6 +22,7 @@ namespace TaNoMenu.Controllers
         }
         
         [HttpGet]
+        [AllowAnonymous]
         public List<Recipe> Get()
         {
             return _recipeRepository.FindAll().ToList();
@@ -28,6 +30,7 @@ namespace TaNoMenu.Controllers
         
         [Route("{recipeId}")]
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult Show(int recipeId)
         {
             return Ok(_recipeRepository.FindById(recipeId));
@@ -35,6 +38,7 @@ namespace TaNoMenu.Controllers
         
         [HttpDelete]
         [Route("{recipeId}")]
+        [Authorize]
         public IActionResult Delete(int recipeId)
         {
             _recipeRepository.Remove(recipeId);
@@ -43,6 +47,7 @@ namespace TaNoMenu.Controllers
         
         [HttpPut]
         [Route("{recipeId}")]
+        [Authorize]
         public IActionResult Put(int recipeId, [FromBody] Recipe recipe)
         {
             recipe.Id = recipeId;
@@ -51,6 +56,7 @@ namespace TaNoMenu.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public IActionResult Post([FromBody] Recipe recipe)
         {
             _recipeRepository.Add(recipe);

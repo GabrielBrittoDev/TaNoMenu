@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -68,6 +69,20 @@ namespace TaNoMenu.Repositories
                 return establishment;
             }
         }
+        
+        public bool Authenticable(Establishment establishment)
+        {
+            using (IDbConnection dbConnection = new MySqlConnection(ConnectionString))
+            {
+                string sQuery = "SELECT * FROM Establishments"
+                             + " WHERE Email = @email" +
+                             " AND Password = @password";
+                
+                dbConnection.Open();
+                return dbConnection.Query(sQuery, establishment).Any();
+            }
+        }
+        
         public override IEnumerable<Establishment> FindAll()
         { 
             using (IDbConnection dbConnection = new MySqlConnection(ConnectionString))

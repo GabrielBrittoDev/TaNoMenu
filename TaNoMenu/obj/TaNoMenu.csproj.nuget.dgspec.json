@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/leal/RiderProjects/TaNoMenu/TaNoMenu/TaNoMenu.csproj": {}
+    "/home/lucas/Documents/devs/TaNoMenu/TaNoMenu/TaNoMenu.csproj": {}
   },
   "projects": {
-    "/home/leal/RiderProjects/TaNoMenu/TaNoMenu/TaNoMenu.csproj": {
+    "/home/lucas/Documents/devs/TaNoMenu/TaNoMenu/TaNoMenu.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/leal/RiderProjects/TaNoMenu/TaNoMenu/TaNoMenu.csproj",
+        "projectUniqueName": "/home/lucas/Documents/devs/TaNoMenu/TaNoMenu/TaNoMenu.csproj",
         "projectName": "TaNoMenu",
-        "projectPath": "/home/leal/RiderProjects/TaNoMenu/TaNoMenu/TaNoMenu.csproj",
-        "packagesPath": "/home/leal/.nuget/packages/",
-        "outputPath": "/home/leal/RiderProjects/TaNoMenu/TaNoMenu/obj/",
+        "projectPath": "/home/lucas/Documents/devs/TaNoMenu/TaNoMenu/TaNoMenu.csproj",
+        "packagesPath": "/home/lucas/.nuget/packages/",
+        "outputPath": "/home/lucas/Documents/devs/TaNoMenu/TaNoMenu/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/leal/.nuget/NuGet/NuGet.Config"
+          "/home/lucas/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
@@ -41,6 +41,14 @@
             "Dapper": {
               "target": "Package",
               "version": "[2.0.90, )"
+            },
+            "Microsoft.AspNetCore.Authentication": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[5.0.0, )"
             },
             "MySql.Data": {
               "target": "Package",
@@ -79,7 +87,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/5.0.104/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/5.0.203/RuntimeIdentifierGraph.json"
         }
       }
     }

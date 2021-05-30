@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-using Newtonsoft.Json;
 using TaNoMenu.Models.Establishments;
 using TaNoMenu.Repositories;
 
@@ -22,6 +21,7 @@ namespace TaNoMenu.Controllers
         }
         
         [HttpGet]
+        [AllowAnonymous]
         public List<Establishment> Get()
         {
             return _establishmentRepository.FindAll().ToList();
@@ -29,6 +29,7 @@ namespace TaNoMenu.Controllers
         
         [Route("{establishmentId}")]
         [HttpGet]
+        [AllowAnonymous]
         public ActionResult Show(int establishmentId)
         {
             return Ok(_establishmentRepository.FindById(establishmentId));
@@ -36,6 +37,7 @@ namespace TaNoMenu.Controllers
         
         [HttpDelete]
         [Route("{establishmentId}")]
+        [Authorize]
         public IActionResult Delete(int establishmentId)
         {
             _establishmentRepository.Remove(establishmentId);
@@ -44,6 +46,7 @@ namespace TaNoMenu.Controllers
         
         [HttpPut]
         [Route("{establishmentId}")]
+        [Authorize]
         public IActionResult Put(int establishmentId, [FromBody] Establishment establishment)
         {
             establishment.Id = establishmentId;
@@ -52,6 +55,7 @@ namespace TaNoMenu.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public IActionResult Post([FromBody] Establishment establishment)
         {
             _establishmentRepository.Add(establishment);
