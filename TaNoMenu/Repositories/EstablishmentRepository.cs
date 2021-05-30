@@ -70,7 +70,7 @@ namespace TaNoMenu.Repositories
             }
         }
         
-        public bool Authenticable(Establishment establishment)
+        public Establishment Authenticable(Establishment establishment)
         {
             using (IDbConnection dbConnection = new MySqlConnection(ConnectionString))
             {
@@ -79,7 +79,13 @@ namespace TaNoMenu.Repositories
                              " AND Password = @password";
                 
                 dbConnection.Open();
-                return dbConnection.Query(sQuery, establishment).Any();
+                IEnumerable<Establishment>establishments = dbConnection.Query<Establishment>(sQuery, establishment);
+                if (!establishments.Any())
+                {
+                    throw new Exception("Usuário ou senha inválidos");
+                }
+
+                return establishments.First();
             }
         }
         

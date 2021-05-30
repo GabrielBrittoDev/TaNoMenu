@@ -18,7 +18,8 @@ namespace TaNoMenu.Repositories
             {
                 Subject = new ClaimsIdentity(new Claim[]
                 {
-                    new Claim(ClaimTypes.Email, establishment.Email)
+                    new Claim(ClaimTypes.Email, establishment.Email),
+                    new Claim(ClaimTypes.NameIdentifier, establishment.Id.ToString())
                 }),
                 Expires = DateTime.UtcNow.AddHours(20),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key),

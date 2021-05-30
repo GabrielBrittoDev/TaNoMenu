@@ -21,19 +21,20 @@ namespace TaNoMenu.Controllers
         [Route("login")]
         public ActionResult Authenticate([FromBody]Establishment model)
         {
-            String token = TokenRepository.GenerateToken(model);
-
-            if (!_establishmentRepository.Authenticable(model))
+            try
+            {
+                String token = TokenRepository.GenerateToken(_establishmentRepository.Authenticable(model));
+                return Ok(new {
+                    token
+                });
+            }
+            catch (Exception e)
             {
                 return NotFound(new
                 {
                     message = "Usuário ou senha inválidos!"
                 });
             }
-
-                return Ok(new {
-                    token
-            });
         }
     }
 }
