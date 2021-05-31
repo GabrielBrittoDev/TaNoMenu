@@ -5,6 +5,7 @@ using System.Linq;
 using Dapper;
 using Microsoft.Extensions.Configuration;
 using MySql.Data.MySqlClient;
+using TaNoMenu.Exceptions;
 using TaNoMenu.Models;
 using TaNoMenu.Models.Establishments;
 
@@ -62,9 +63,15 @@ namespace TaNoMenu.Repositories
                 var recipeQuery = "SELECT * FROM Establishments"
                                   + " WHERE Id = @Id;";
                 dbConnection.Open();
-                var multi = dbConnection.QueryMultiple(sQuery + " " + recipeQuery , new {Id = id});
+                SqlMapper.GridReader multi = dbConnection.QueryMultiple(sQuery + " " + recipeQuery , new {Id = id});
                 List<Recipe> recipes = multi.Read<Recipe>().ToList();
-                var establishment = multi.ReadFirst<Establishment>();
+                List<Establishment> establishments = multi.Read<Establishment>().ToList();
+                if (!establishments.Any())
+                {
+                    throw new HttpException("Estabelecimento não encontrado", 404);
+                }
+
+                Establishment establishment = establishments.First();
                 establishment.Recipes = recipes;
                 return establishment;
             }
