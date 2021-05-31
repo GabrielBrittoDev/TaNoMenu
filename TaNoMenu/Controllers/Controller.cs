@@ -19,6 +19,8 @@ namespace TaNoMenu.Controllers
                         return Unauthorized(httpException.Message); 
                     case 404:
                         return NotFound(httpException.Message);
+                    default:
+                        return BadRequest(httpException.Message);
                 }
             }
 
